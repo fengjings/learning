@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 
 def main():
-    pass
+    '''checks if there enough mempry'''
 
 main()
-
 
