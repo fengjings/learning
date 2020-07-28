@@ -11,15 +11,17 @@ import matplotlib.pyplot as plt
 import time
 
 data_dir = "/home2/yks/program/data/DogsVSCats"
+GPU_number = 3
 
 Use_gpu = torch.cuda.is_available()
 print('cuda.is_available', torch.cuda.is_available())
 print('device_count', torch.cuda.device_count())
 print('get_device_name', torch.cuda.get_device_name())
 print('current_device',torch.cuda.current_device())
-torch.cuda.set_device(0)
+torch.cuda.set_device(GPU_number)
 device = torch.device("cuda" if torch.cuda.is_available else "cpu")
 print(device)
+print('current_device',torch.cuda.current_device())
 
 
 data_transform = {x:transforms.Compose([#transforms.Scale([224,224]),
@@ -79,8 +81,9 @@ weight_1 = 0.6
 weight_2 = 0.4
 epoch_n = 5
 
-print(time.strftime("%Y-%m-%d %H:%M:%S",time.localtime(time.time())))
-time_open = time.time()
+print('start time: ',time.strftime("%Y-%m-%d %H:%M:%S",time.localtime(time.time())))
+
+
 for epoch in range(epoch_n):
     print("Epoch {}/{}".format(epoch, epoch_n - 1))
     for phase in ["train", "valid"]:
@@ -145,9 +148,7 @@ for epoch in range(epoch_n):
         print("Epoch, Model1 Loss:{:.4f}, Model1 Acc:{:.4f}%, Model2 Loss:{:.4f}, Model2 Acc:{:.4f}%,Blending_Model ACC:{:.4f}".format(epoch_loss_1,epoch_acc_1, epoch_loss_2,epoch_acc_2,epoch_blending_acc))
 
 
-time_end = time.ti
-print(time_end)
-print(time.strftime("%Y-%m-%d %H:%M:%S",time.localtime(time.time())))
+print('end time: ',time.strftime("%Y-%m-%d %H:%M:%S",time.localtime(time.time())))
 
 
 
