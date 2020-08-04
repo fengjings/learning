@@ -37,7 +37,7 @@ print(torch.cuda.is_available())
 print(torch.cuda.device_count())
 print(torch.cuda.get_device_name())
 print(torch.cuda.current_device())
-torch.cuda.set_device(3)
+torch.cuda.set_device()
 print(torch.cuda.current_device())
 
 
